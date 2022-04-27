@@ -33,7 +33,11 @@ class DatabaseServices:
             "date": date
         }
 
-        return collection.insert_one(post)
+        try:
+            return collection.insert_one(post)
+        except Exception:
+            print("Unable to insert record to database.")
+
 
     def update(self):
         pass
