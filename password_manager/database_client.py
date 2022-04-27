@@ -10,8 +10,3 @@ collection = db["accounts_and_passwords"]
 #     print(client.server_info())
 # except Exception:
 #     print("Unable to connect to the server.")
-
-# post1 = {"name":"ian"}
-
-# collection.insert_one(post1)
-# collection.delete_many({})

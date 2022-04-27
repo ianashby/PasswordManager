@@ -3,8 +3,7 @@ from password_manager.database_services import DatabaseServices
 
 def main():
 
-    database_service = DatabaseServices()
-    director = TerminalService(database_service)
+    director = TerminalService()
     director.run_program()
 
 if __name__ == "__main__":

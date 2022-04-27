@@ -1,4 +1,5 @@
 import datetime
+import pprint
 from password_manager.database_client import collection
 
 class DatabaseServices:
@@ -16,9 +17,14 @@ class DatabaseServices:
         """
         Query all records with the database.
         """
-        pass
+        try:
+            posts = collection.find()
+            return posts
+        except Exception:
+            print("Unable to find passwords in database.")
 
-    def insert(self):
+
+    def insert_post(self):
         """
         Insert a post into the database.
         """
@@ -40,14 +46,15 @@ class DatabaseServices:
         }
 
         try:
-            return collection.insert_one(post)
+            collection.insert_one(post)
+            print("Password was successfully added to the database.")
         except Exception:
             print("Unable to insert record to database.")
 
 
     def update(self):
         """
-        Update a post by account name. 
+        Update a post's username and password by account name. 
         """
         pass
 
@@ -61,6 +68,8 @@ class DatabaseServices:
         """
         Delete all posts in database.
         """
-        pass
-
-# TODO printing function?
+        try:
+            collection.delete_many()
+            print("All passwords have been deleted from the database.\n")
+        except Exception:
+            print("Unable to delete all passwords from database.")
