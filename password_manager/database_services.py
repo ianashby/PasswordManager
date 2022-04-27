@@ -7,9 +7,15 @@ class DatabaseServices:
         pass
 
     def query_one(self):
+        """
+        Query/search for record based on account name input.
+        """
         pass
 
     def query_many(self):
+        """
+        Query all records with the database.
+        """
         pass
 
     def insert(self):
@@ -40,11 +46,21 @@ class DatabaseServices:
 
 
     def update(self):
+        """
+        Update a post by account name. 
+        """
         pass
 
     def delete_one(self):
+        """
+        Delete a post by account name.
+        """
         pass
 
     def delete_many(self):
+        """
+        Delete all posts in database.
+        """
         pass
 
+# TODO printing function?
