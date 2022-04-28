@@ -45,7 +45,7 @@ class DatabaseServices:
             print("Unable to insert record to database.")
 
 
-    def update_one(self, query_input, new_username, new_password):
+    def update_one(self, query_input, new_username, new_password, new_date):
         """
         Update a post's username and password by account name. 
         """
@@ -53,11 +53,13 @@ class DatabaseServices:
         filter = {"account_name": query_input}
         
         # Values to be updated.
-        newvalues = {"$set": {"username": new_username, "password": new_password}}
+        newvalues = {"$set": {"username": new_username, "password": new_password, "date": new_date}}
 
         try:
             collection.update_one(filter, newvalues)
             print(f"Username and password for {query_input} has successfully been updated!")
+
+
         except Exception:
             print("Unable to update username and password.")
 
@@ -80,7 +82,3 @@ class DatabaseServices:
             print("All passwords have been deleted from the database.\n")
         except Exception:
             print("Unable to delete all passwords from database.")
-
-    def count_records(self, posts):
-        
-        return len(list(posts))

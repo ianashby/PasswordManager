@@ -16,15 +16,13 @@ class TerminalService:
 
             if user_input == 1:
                 posts, post_count = self._ds.query_many()
-                # posts = query[0]
-                # post_count = query[1]
                 self.print_table(posts, post_count)
+
             elif user_input == 2:
                 account_name = input("Account name: ")
                 post, post_count = self._ds.query_one(account_name)
-                # post = query[0]
-                # post_count = query[1]
                 self.print_table(post, post_count)
+
             elif user_input == 3:
                 account_name = input("Account name: ")
                 account_address = input("Account web address: ")
@@ -33,16 +31,25 @@ class TerminalService:
                 password = input("Password: ")
                 date = str(datetime.date.today())
                 self._ds.insert_post(account_name, account_address, email, username, password, date)
+
             elif user_input == 4:
-                account_namet = input("Account name: ")
-                new_username = input("New username: ")
-                new_password = input("New password: ")
-                self._ds.update_one(account_name, new_username, new_password)
+                account_name = input("Account name: ")
+                post, post_count = self._ds.query_one(account_name)
+                if post_count > 0:
+                    new_username = input("New username: ")
+                    new_password = input("New password: ")
+                    new_date = str(datetime.date.today())
+                    self._ds.update_one(account_name, new_username, new_password, new_date)
+                else:
+                    print("nope")
+
             elif user_input == 5:
                 account_name = input("Account name: ")
                 self._ds.delete_one(account_name)
+
             elif user_input == 6:
                 self._ds.delete_many()
+
             elif user_input == 7:
                 print("Goodbye!")
                 done = True
