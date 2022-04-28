@@ -1,3 +1,4 @@
+import datetime
 from password_manager.database_services import DatabaseServices
 
 class TerminalService:
@@ -14,16 +15,32 @@ class TerminalService:
             user_input = self.get_input()
 
             if user_input == 1:
-                posts = self._ds.query_many()
-                self.print_table(posts)
+                posts, post_count = self._ds.query_many()
+                # posts = query[0]
+                # post_count = query[1]
+                self.print_table(posts, post_count)
             elif user_input == 2:
-                self._ds.query_one()
+                account_name = input("Account name: ")
+                post, post_count = self._ds.query_one(account_name)
+                # post = query[0]
+                # post_count = query[1]
+                self.print_table(post, post_count)
             elif user_input == 3:
-                self._ds.insert_post()
+                account_name = input("Account name: ")
+                account_address = input("Account web address: ")
+                email = input("Email: ")
+                username = input("Username: ")
+                password = input("Password: ")
+                date = str(datetime.date.today())
+                self._ds.insert_post(account_name, account_address, email, username, password, date)
             elif user_input == 4:
-                self._ds.update()
+                account_namet = input("Account name: ")
+                new_username = input("New username: ")
+                new_password = input("New password: ")
+                self._ds.update_one(account_name, new_username, new_password)
             elif user_input == 5:
-                self._ds.delete_one()
+                account_name = input("Account name: ")
+                self._ds.delete_one(account_name)
             elif user_input == 6:
                 self._ds.delete_many()
             elif user_input == 7:
@@ -45,11 +62,20 @@ class TerminalService:
         print('7. Quit')
         print('-'*30)
 
-    def print_table(self, posts):
-        print("{:>15} {:>15} {:>15}".format("Account Name", "Web Address", "Email"))
-        for post in posts:
-            print("{:>15} {:>15} {:>15}".format(post["account_name"], post["account_address"], post["email"]))
-    
+    def print_table(self, posts, post_count):
+        print("\n\n")
+
+        if post_count > 0:
+            print("{:>15} {:>15} {:>15} {:>15} {:>15} {:>15}".format("Account Name", "Web Address", "Email", "Username", "Password", "Date"))
+
+            for post in posts:
+                print("{:>15} {:>15} {:>15} {:>15} {:>15} {:>15}".format(post["account_name"], post["account_address"], post["email"], post["username"], post["password"], post["date"]))
+
+        else:
+            print("No records to display.")
+        print("\n\n")
+
+
     def get_input(self):
         """
         This function will gather user input from the menu.

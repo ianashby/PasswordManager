@@ -1,5 +1,5 @@
 from password_manager.terminal_service import TerminalService
-from password_manager.database_services import DatabaseServices
+from password_manager.database_client import collection
 
 def main():
 
