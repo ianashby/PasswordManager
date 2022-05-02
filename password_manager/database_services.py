@@ -1,6 +1,10 @@
 from password_manager.database_client import collection
+from password_manager.password_hashing import PasswordHasher
 
 class DatabaseServices:
+
+    def __init__(self) -> None:
+        self.PasswordHasher = PasswordHasher()
 
     def query_one(self, query_input):
         """
@@ -82,3 +86,22 @@ class DatabaseServices:
             print("All passwords have been deleted from the database.\n")
         except Exception:
             print("Unable to delete all passwords from database.")
+
+    def compare_password(self):
+        
+        account_name = input("Account name: ")
+        posts, post_count = self.query_one(account_name)
+        if post_count > 0:
+            for x in posts:
+                post = x["password"]
+        else:
+            print("Unable to find account in database.")
+            return False
+
+        password_input = input("Password: ").encode()
+
+        checked_pw = self.PasswordHasher.check_password(password_input, post)
+
+        if checked_pw:
+            print("Password validated!")
+            return True

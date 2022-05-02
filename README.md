@@ -26,6 +26,7 @@
 
 * [Python MongoDB Tutorial using PyMongo by Tech With Tim](https://www.youtube.com/watch?v=rE_bJl2GAY8&list=LL&index=1)
 * [PyMongo Documentation](https://pymongo.readthedocs.io/en/stable/tutorial.html)
+* [Password Hashing](https://blog.devgenius.io/password-hashing-with-python-f3148692e8b9)
 
 # Future Work
 
