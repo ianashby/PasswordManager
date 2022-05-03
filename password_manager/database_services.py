@@ -87,10 +87,18 @@ class DatabaseServices:
         except Exception:
             print("Unable to delete all passwords from database.")
 
-    def compare_password(self):
+    def compare_password(self, account_input) -> bool:
+        """
+        Returns True or False dependent on if input password matches the stored, hashed password.
+
+        Parameters:
+            account_input (str): The name of the account that will be used to compare the respective password.
+
+        Returns:
+            True/False (bool): Returns True if password matches hashed password. If not, returns False.
+        """
+        posts, post_count = self.query_one(account_input)
         
-        account_name = input("Account name: ")
-        posts, post_count = self.query_one(account_name)
         if post_count > 0:
             for x in posts:
                 post = x["password"]

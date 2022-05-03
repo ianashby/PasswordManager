@@ -33,9 +33,9 @@ class TerminalService:
                 password = input("Password: ").encode()
                 date = str(datetime.date.today())
 
-                hashed_password = self.PasswordHasher.get_hashed_password(password)
+                # hashed_password = self.PasswordHasher.get_hashed_password(password)
 
-                self.DatabaseServices.insert_post(account_name, account_address, email, username, hashed_password, date)
+                self.DatabaseServices.insert_post(account_name, account_address, email, username, password, date)
 
             elif user_input == 4:
                 account_name = input("Account name: ")
@@ -60,7 +60,8 @@ class TerminalService:
                 done = True
 
             elif user_input == 8:
-                self.DatabaseServices.compare_password()
+                account_input = input("Account name: ")
+                self.DatabaseServices.compare_password(account_input)
 
     def display_menu(self):
         """

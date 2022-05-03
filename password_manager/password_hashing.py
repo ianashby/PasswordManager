@@ -2,9 +2,6 @@ import bcrypt
 
 class PasswordHasher:
 
-    def __init__(self) -> None:
-        pass
-
     def get_hashed_password(self, plain_text_password):
         # Hash a password for the first time
         #   (Using bcrypt, the salt is saved into the hash itself)
