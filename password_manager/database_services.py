@@ -9,6 +9,13 @@ class DatabaseServices:
     def query_one(self, query_input):
         """
         Query/search for record based on account name input.
+
+        Parameters:
+            query_input(str): The name of the account that will be queried. 
+
+        Returns:
+            post(cursor): Cursor object that can be unpacked to view the query result.
+            post_count(int): Integer of posts returned in query. 
         """
         try:
             post = collection.find({"account_name": query_input})
@@ -20,6 +27,10 @@ class DatabaseServices:
     def query_many(self):
         """
         Query all records with the database.
+
+        Returns:
+            post(cursor): Cursor object that can be unpacked to view the query result.
+            post_count(int): Integer of posts returned in query.
         """
         try:
             posts = collection.find({})
@@ -32,6 +43,14 @@ class DatabaseServices:
     def insert_post(self, account_name, account_address, email, username, password, date):
         """
         Insert a post into the database.
+
+        Parameters:
+            account_name(str): Name of account being added to database.
+            account_address(str): Web address of account being added to database.
+            email(str): Email associated with account being added to database.
+            username(str): Username associated with account being added to database.
+            password(str): Password associated with account being added to database.
+            date(str): Date of when the post has been added to the database.
         """
         post = {
             "account_name": account_name,
@@ -52,6 +71,12 @@ class DatabaseServices:
     def update_one(self, query_input, new_username, new_password, new_date):
         """
         Update a post's username and password by account name. 
+
+        Parameters:
+            query_input(str): Name of account being added to database.
+            new_username(str): Username associated with account being added to database.
+            new_password(str): Password associated with account being added to database.
+            new_date(str): Date of when the post has been added to the database.
         """
         # Updating fan quantity form 10 to 25.
         filter = {"account_name": query_input}
@@ -62,14 +87,15 @@ class DatabaseServices:
         try:
             collection.update_one(filter, newvalues)
             print(f"Username and password for {query_input} has successfully been updated!")
-
-
         except Exception:
             print("Unable to update username and password.")
 
     def delete_one(self, query_input):
         """
         Delete a post by account name.
+
+        Parameters:
+            query_input(str): Name of account being added to database.
         """
         try:
             collection.delete_one({"account_name": query_input})
@@ -87,7 +113,7 @@ class DatabaseServices:
         except Exception:
             print("Unable to delete all passwords from database.")
 
-    def compare_password(self, account_input) -> bool:
+    def compare_password(self, account_input):
         """
         Returns True or False dependent on if input password matches the stored, hashed password.
 

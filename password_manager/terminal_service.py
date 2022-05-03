@@ -16,27 +16,31 @@ class TerminalService:
             self.display_menu()
             user_input = self.get_input()
 
+            # View all passwords
             if user_input == 1:
                 posts, post_count = self.DatabaseServices.query_many()
                 self.print_table(posts, post_count)
 
+            # Search for a password
             elif user_input == 2:
                 account_name = input("Account name: ")
                 post, post_count = self.DatabaseServices.query_one(account_name)
                 self.print_table(post, post_count)
 
+            # Add a password
             elif user_input == 3:
                 account_name = input("Account name: ")
                 account_address = input("Account web address: ")
                 email = input("Email: ")
                 username = input("Username: ")
-                password = input("Password: ").encode()
+                password = input("Password: ")
                 date = str(datetime.date.today())
 
                 # hashed_password = self.PasswordHasher.get_hashed_password(password)
 
                 self.DatabaseServices.insert_post(account_name, account_address, email, username, password, date)
 
+            # Update a password on file
             elif user_input == 4:
                 account_name = input("Account name: ")
                 post, post_count = self.DatabaseServices.query_one(account_name)
@@ -45,20 +49,22 @@ class TerminalService:
                     new_password = input("New password: ")
                     new_date = str(datetime.date.today())
                     self.DatabaseServices.update_one(account_name, new_username, new_password, new_date)
-                else:
-                    print("nope")
 
+            # Delete a specific password
             elif user_input == 5:
                 account_name = input("Account name: ")
                 self.DatabaseServices.delete_one(account_name)
 
+            # Delete all passwords
             elif user_input == 6:
                 self.DatabaseServices.delete_many()
 
+            # Quit the loop
             elif user_input == 7:
                 print("Goodbye!")
                 done = True
 
+            # HIDDEN - Compare entered password to hashed password
             elif user_input == 8:
                 account_input = input("Account name: ")
                 self.DatabaseServices.compare_password(account_input)
@@ -79,6 +85,13 @@ class TerminalService:
         print('-'*30)
 
     def print_table(self, posts, post_count):
+        """
+        This function will print the database results per row.
+
+        Parameters:
+            posts(Cursor): Collection of posts that can be unpacked to view.
+            post_count(int): Number of posts returned in query.
+        """
         print("\n\n")
 
         if post_count > 0:
@@ -89,12 +102,15 @@ class TerminalService:
 
         else:
             print("No records to display.")
-        print("\n\n")
 
+        print("\n\n")
 
     def get_input(self):
         """
         This function will gather user input from the menu.
+
+        Returns:
+            user_input(int): Menu selection. 
         """
         user_input = int(input('Choose one: '))
         return user_input
