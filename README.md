@@ -1,3 +1,7 @@
+# Password Manager
+
+---
+
 # Overview
 
 {Important!  Do not say in this section that this is college assignment.  Talk about what you are trying to accomplish as a software engineer to further your learning.}
@@ -18,9 +22,9 @@
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+MongoDB, VS Code (describe)
 
-{Describe the programming language that you used and any libraries.}
+Python, BCrypt, PyMongo (describe)
 
 # Useful Websites
 
@@ -31,7 +35,7 @@
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
-* Item 1
-* Item 2
-* Item 3
+Currently, this project stores unhashed and insecure passwords in the cloud. In the future, it would be ideal to store these passwords in a safer manner.
+This would especially be needed if this were to be used on the backend of a web app. However, for this scope of this project, I have decided to turn off the password hashing feature. If/when this code is adapted for backend use not related to a password manager, I can easily adapt this code to work in a safe manner.
+
+Additionally, if I wanted to further expand upon the project, I could build a proper user interface to complete all of the tasks available in this project.

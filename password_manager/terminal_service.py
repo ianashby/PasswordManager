@@ -95,10 +95,10 @@ class TerminalService:
         print("\n\n")
 
         if post_count > 0:
-            print("{:>15} {:>15} {:>15} {:>15} {:>75} {:>15}".format("Account Name", "Web Address", "Email", "Username", "Password", "Date"))
+            print("{:>15} {:>15} {:>15} {:>15} {:>15} {:>15}".format("Account Name", "Web Address", "Email", "Username", "Password", "Date"))
 
             for post in posts:
-                print("{:>15} {:>15} {:>15} {:>15} {:>75} {:>15}".format(post["account_name"], post["account_address"], post["email"], post["username"], str(post["password"]), post["date"]))
+                print("{:>15} {:>15} {:>15} {:>15} {:>15} {:>15}".format(post["account_name"], post["account_address"], post["email"], post["username"], str(post["password"]), post["date"]))
 
         else:
             print("No records to display.")
