@@ -23,6 +23,7 @@ class DatabaseServices:
             return post, post_count
         except Exception:
             print("Unable to find account in database.")
+            print("\n\n")
 
     def query_many(self):
         """
@@ -38,6 +39,7 @@ class DatabaseServices:
             return posts, post_count
         except Exception:
             print("Unable to find passwords in database.")
+            print("\n\n")
 
 
     def insert_post(self, account_name, account_address, email, username, password, date):
@@ -64,8 +66,10 @@ class DatabaseServices:
         try:
             collection.insert_one(post)
             print("Password was successfully added to the database.")
+            print("\n\n")
         except Exception:
             print("Unable to insert record to database.")
+            print("\n\n")
 
 
     def update_one(self, query_input, new_username, new_password, new_date):
@@ -87,8 +91,10 @@ class DatabaseServices:
         try:
             collection.update_one(filter, newvalues)
             print(f"Username and password for {query_input} has successfully been updated!")
+            print("\n\n")
         except Exception:
             print("Unable to update username and password.")
+            print("\n\n")
 
     def delete_one(self, query_input):
         """
@@ -100,8 +106,10 @@ class DatabaseServices:
         try:
             collection.delete_one({"account_name": query_input})
             print(f"{query_input} has been deleted from the database.\n")
+            print("\n\n")
         except Exception:
             print("Unable to delete all passwords from database.")
+            print("\n\n")
 
     def delete_many(self):
         """
@@ -109,9 +117,11 @@ class DatabaseServices:
         """
         try:
             collection.delete_many({})
-            print("All passwords have been deleted from the database.\n")
+            print("All passwords have been deleted from the database.")
+            print("\n\n")
         except Exception:
             print("Unable to delete all passwords from database.")
+            print("\n\n")
 
     def compare_password(self, account_input):
         """
