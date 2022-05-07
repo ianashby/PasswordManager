@@ -8,9 +8,7 @@ This project is a password manager that stores its data in a MongoDB cloud datab
 
 I chose to write this software to learn more about how to implement and work with cloud databases. I wanted to learn about the functionality of a cloud database and how Python could be used to accomplish the tasks of working with the cloud database. After this project, I can confidently say that I feel comfortable with working with a cloud database.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the software running, a walkthrough of the code, and a view of the cloud database.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/L767eazIk-4)
 
 # Cloud Database
 
